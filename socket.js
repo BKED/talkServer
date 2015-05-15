@@ -11,7 +11,7 @@ server.on('error', function(err) {
 });
 
 server.on('connection', function(c) {
-    console.log(c.address());
+    console.log(c.remoteAddress());
     c.on('end', function() {
         console.log('client disconnected');
     });
