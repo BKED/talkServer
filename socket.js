@@ -50,6 +50,7 @@ server.on('connection', function(c) {
                         userList.push({name: username, port: port, address: address});
                         var s = makeUserListString();
                         console.log(s);
+                        c.write(s);
                     }
                     else {
                         c.write('<SESSION_DENY />');
@@ -61,10 +62,18 @@ server.on('connection', function(c) {
                     var status = parsedData.children[1].content;
                     if (status === 'ALIVE') {
                         //TO-DO: send list online user
+                        var s =  makeUserListString();
+                        c.write(s);
                     } else {
                         //TO-DO: remove this user from online list
+                        for (var i=0; i<userList.length; i++) {
+                        if (userList[i].name === username) {
+                            userList.splice(i,1);
+                            break;
+                        }
                     }
-                    break; 
+                    }
+                    break;
             }
         }
     });
