@@ -11,12 +11,18 @@ server.on('error', function(err) {
 });
 
 server.on('connection', function(c) {
-    console.log('client connected');
+    console.log(c.address());
     c.on('end', function() {
         console.log('client disconnected');
     });
-    c.write('hello\r\n');
-    c.pipe(c);
+    c.on('data', function(data){
+        var dataString = data.toString();
+        var q = dataString.substr(dataString.indexOf('<'));
+        if (q !== '') {
+            console.log(q);
+        }
+    });
+    c.write('Hello!');
 });
 
 module.exports = {
