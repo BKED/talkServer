@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/BKED/talkServer/issues"
   },
-  "homepage": "https://github.com/BKED/talkServer"
+  "homepage": "https://github.com/BKED/talkServer",
+  "dependencies": {
+    "xml-parser": "^1.2.0"
+  }
 }
